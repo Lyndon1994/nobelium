@@ -16,9 +16,23 @@ const Ackee = dynamic(() => import('@/components/Ackee'), { ssr: false })
 const Gtag = dynamic(() => import('@/components/Gtag'), { ssr: false })
 
 export default function MyApp ({ Component, pageProps, config, locale }) {
+
+  const getAnalyticsTag = () => {
+    return {
+      __html: `
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?3426a41e1078c562b0f2ef7c66c2b2f7";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();`,
+    }
+  }
+
   return (
     <ConfigProvider value={config}>
-      <Scripts />
+      <Scripts dangerouslySetInnerHTML={getAnalyticsTag()}/>
       <LocaleProvider value={locale}>
         <ThemeProvider>
           <>

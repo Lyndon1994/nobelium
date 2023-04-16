@@ -16,13 +16,13 @@ import { Router } from 'next/router'
 const Ackee = dynamic(() => import('@/components/Ackee'), { ssr: false })
 const Gtag = dynamic(() => import('@/components/Gtag'), { ssr: false })
 
-export default function MyApp ({ Component, pageProps, config, locale }) {
+Router.events.on('routeChangeComplete', (url) => {
+  try{
+    window._hmt.push(['_trackPageview', url]);
+  }catch (e){}
+})
 
-  Router.events.on('routeChangeComplete', (url) => {
-    try{
-      window._hmt.push(['_trackPageview', url]);
-    }catch (e){}
-  })
+export default function MyApp ({ Component, pageProps, config, locale }) {
   
   return (
     <ConfigProvider value={config}>

@@ -1,7 +1,7 @@
 const { config }  = require('./lib/server/config')
 
 module.exports = {
-  siteUrl: config.link,
+  siteUrl: process.env.SITE_URL || config.link,
   generateRobotsTxt: true,
   sitemapSize: 7000,
   generateIndexSitemap: false

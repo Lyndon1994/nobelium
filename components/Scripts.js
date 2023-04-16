@@ -26,6 +26,16 @@ const Scripts = () => {
                 page_path: window.location.pathname,
               });`}
           </Script>
+
+          <Script strategy="lazyOnload" id="baidutongji">
+            {`var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?3426a41e1078c562b0f2ef7c66c2b2f7";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();`}
+          </Script>
         </>
       )}
     </>

@@ -32,7 +32,7 @@ export default function MyApp ({ Component, pageProps, config, locale }) {
 
   return (
     <ConfigProvider value={config}>
-      <Scripts dangerouslySetInnerHTML={getAnalyticsTag()}/>
+      <Scripts />
       <LocaleProvider value={locale}>
         <ThemeProvider>
           <>
@@ -43,6 +43,9 @@ export default function MyApp ({ Component, pageProps, config, locale }) {
               />
             )}
             {process.env.VERCEL_ENV === 'production' && config?.analytics?.provider === 'ga' && <Gtag />}
+            <Head>
+              <script dangerouslySetInnerHTML={getAnalyticsTag()}/>
+            </Head>
             <Component {...pageProps} />
           </>
         </ThemeProvider>
